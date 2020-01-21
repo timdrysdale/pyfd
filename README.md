@@ -1,4 +1,6 @@
-#fd
+# pyfd
+
+![pyfd logo](/img/logo.png)
 
 A simple demonstration of finite differences for plotting potentials arising from 2D charge distributions, written for my EM3 class.
 
@@ -30,4 +32,5 @@ You might like to look more closely at convergece behaviour, and compare results
 
 #### Validation
 I've not done this yet, because things "look about right" - at least, so far! I've left it as an exercise for you. That might seem a bit cheeky, but actually in industry and research, any time you get a new simulation tool, you undertake a validation exercise to compare it to measurements (directly or indirectly).
+
 
