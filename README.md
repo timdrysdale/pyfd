@@ -37,11 +37,11 @@ I've not done this yet, because things "look about right" - at least, so far! I'
 
 In Jan 21's lecture the class decided we should do a stylised face.
 
-![chalkboard picture of face](/img/chalkboard_400.png)
+![chalkboard picture of face](/img/chalkboard_400.jpg)
 
 Here's a picture showing how I "digitised" it by hand (after tracing it onto paper from a photo)
 
-![paper picture of face](/img/paper_400.png)
+![paper picture of face](/img/paper_400.jpg)
 
 Here's the geometry before solving:
 
