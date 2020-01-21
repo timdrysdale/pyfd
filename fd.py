@@ -564,9 +564,169 @@ def demoEM3():
     errV = "[error=%0.3fV]"%g.maxDeltaV
     plt.title('Solution after %d iterations%s%s'%(g.iterationCount,converged,errV))
     plt.savefig('demoEM3.png',dpi=300)
-    
+        
+    return g
 
+
+
+def liveDemo0():
     
+    plt.figure()
+    g = Grid(10,10)
+
+    g.fixWall('n',73)
+    g.fixWall('s',-41)
+    g.fixWall('e',-1)
+    g.fixWall('w',-41)
+   
+    g.solve(accuracyV=0.1, maxIterations=99)
+    plt.contourf(g.V,10)
+    plt.colorbar(label='Potential [Volts]')
+    plt.xlabel('x [unit lengths]')
+    plt.ylabel('y [unit lengths]')
+    converged = " (Converged)"
+    if g.ErrNotConverged:
+        converged = " (Not Converged)"
+    errV = "[error=%0.3fV]"%g.maxDeltaV
+    plt.title('Solution after %d iterations%s%s'%(g.iterationCount,converged,errV))
+    plt.savefig('liveDemo0.png',dpi=300)
+    return g
+
+def liveDemo1():
+    
+    plt.figure()
+    g = Grid(50,50)
+    
+    g.fixWall('n',73)
+    g.fixWall('s',-41)
+    g.fixWall('e',-1)
+    g.fixWall('w',-41)
+    p = Poly([[10,10],[30,10],[20,30]])
+    g.fixPoly(p,50)    
+    
+    g.solve(accuracyV=0.1, maxIterations=99)
+    plt.contourf(g.V,10)
+    plt.colorbar(label='Potential [Volts]')
+    plt.xlabel('x [unit lengths]')
+    plt.ylabel('y [unit lengths]')
+    converged = " (Converged)"
+    if g.ErrNotConverged:
+        converged = " (Not Converged)"
+    errV = "[error=%0.3fV]"%g.maxDeltaV
+    plt.title('Solution after %d iterations%s%s'%(g.iterationCount,converged,errV))
+    plt.savefig('liveDemo1.png',dpi=300)
+    return g
+
+def face():
+    
+    plt.figure()
+    g = Grid(120,100)
+    
+    g.fixWall('n',73)
+    g.fixWall('s',-41)
+    g.fixWall('e',-1)
+    g.fixWall('w',-41)
+    
+    face = Poly([
+            [32,55],
+            [32,24],
+            [70,23],
+            [92,23],
+            [91,40],
+            [92,56],
+            [89,56],
+            [88,40],
+            [89,26],
+            [70,26],
+            [35,26],
+            [35,55]        
+            ])
+    g.fixPoly(face,50)    
+
+    hair = Poly([
+            [32,67],
+            [32,58],
+            [34,57],
+            [68,62],
+            [41,58],
+            [46,62],
+            [51,58],
+            [57,62],
+            [61,59],
+            [65,63],
+            [70,58],
+            [75,63],
+            [79,58],
+            [82,62],
+            [91,61],
+            [92,68],
+            [60,70]
+            ])
+    
+    g.fixPoly(hair,-25)
+    
+    eye1 = Poly([
+            [45,46],
+            [47,50],
+            [57,50],
+            [57,47],
+            [50,45]
+            ])
+    
+    g.fixPoly(eye1,-75)
+    
+    for y in np.arange(48,50):
+        g.fixV(51,y,15)
+        
+    eye2 = Poly([
+            [72,47],
+            [73,51],
+            [83,51],
+            [82,48],
+            [80,47]
+            ])
+    
+    g.fixPoly(eye2,-75)
+       
+    for y in np.arange(49,51):        
+        g.fixV(77,y,15)
+    
+    mouth = Poly([
+            [52,30],
+            [55,32],
+            [58,33],
+            [62,33],
+            [65,31.5],
+            [67,30],
+            [69,28],
+            [60,30]
+            ])
+    
+    g.fixPoly(mouth,50)
+
+    g.solve(accuracyV=0.1, maxIterations=1)
+    plt.contourf(np.flipud(np.rot90(g.V)),10)
+    plt.colorbar(label='Potential [Volts]')
+    plt.xlabel('x [unit lengths]')
+    plt.ylabel('y [unit lengths]')
+    converged = " (Converged)"
+    if g.ErrNotConverged:
+        converged = " (Not Converged)"
+    errV = "[error=%0.3fV]"%g.maxDeltaV
+    plt.title('Solution after %d iterations%s%s'%(g.iterationCount,converged,errV))
+    plt.savefig('face_unsolved.png',dpi=300)
+    
+    g.solve(accuracyV=0.1, maxIterations=599)
+    plt.contourf(np.flipud(np.rot90(g.V)),10)
+    plt.colorbar(label='Potential [Volts]')
+    plt.xlabel('x [unit lengths]')
+    plt.ylabel('y [unit lengths]')
+    converged = " (Converged)"
+    if g.ErrNotConverged:
+        converged = " (Not Converged)"
+    errV = "[error=%0.3fV]"%g.maxDeltaV
+    plt.title('Solution after %d iterations%s%s'%(g.iterationCount,converged,errV))
+    plt.savefig('face.png',dpi=300)
     return g
 
 if __name__ == "__main__":
@@ -577,9 +737,21 @@ if __name__ == "__main__":
     doDemoPoly = False
     doDemoEM3 = False
 
-    doDemo = True
+    doLiveDemo = False
+    doDemo = False
+    doFace = True
     doShowEvolution = False #Slow-ish!
+    doFace = True #slow-ish!
  
+    if doDemo:
+        g = demoGrid() #returns g so you can explore the results yourself
+   
+    if doLiveDemo:
+        g0 = liveDemo0()
+        g1 = liveDemo1()
+        
+    if doFace:    
+        f = face()
    
     if doDemoEM3:
         demoEM3()
@@ -593,8 +765,6 @@ if __name__ == "__main__":
     if doTest:
         testGrid()
         
-    if doDemo:
-        g = demoGrid() #returns g so you can explore the results yourself
-        
+   
     if doShowEvolution:
         showEvolution()
