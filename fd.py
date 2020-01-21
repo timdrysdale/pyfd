@@ -717,6 +717,7 @@ def face():
     plt.savefig('face_unsolved.png',dpi=300)
     
     g.solve(accuracyV=0.1, maxIterations=599)
+    plt.figure()
     plt.contourf(np.flipud(np.rot90(g.V)),10)
     plt.colorbar(label='Potential [Volts]')
     plt.xlabel('x [unit lengths]')
