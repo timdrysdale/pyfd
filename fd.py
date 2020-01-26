@@ -744,7 +744,11 @@ if __name__ == "__main__":
     doFace = False #slow-ish!
  
     if doDemo:
+        print("Calculating fields in a capacitor...")
         g = demoGrid() #returns g so you can explore the results yourself
+        print("Done! \
+If in batch mode, check demo.png for the results if in batch mode\n \
+If in interactive mode, also explore the voltages in matrix g.V")
    
     if doLiveDemo:
         g0 = liveDemo0()
