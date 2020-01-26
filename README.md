@@ -18,6 +18,9 @@ Download this repository, then run from the command line (or from your IDE)
 
 Assumes you have python3 installed, along with numpy and matplotlib (which you will if you use a complete distribution like Anaconda, and if not, can be easily rectified e.g. using ```pip install numpy``` at the command line.
 
+You will see a message confirming that the code is running. I usually follow the linux style of not writing anything to the console if things are going well, but I have had a student with a windows machine not sure if it is working, so this should help triage the problem a bit ...
+![pyfd logo](/img/default_console.png)
+
 ### Going further
 
 #### Geometries
