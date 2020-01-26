@@ -739,10 +739,9 @@ if __name__ == "__main__":
     doDemoEM3 = False
 
     doLiveDemo = False
-    doDemo = False
-    doFace = True
+    doDemo = True
     doShowEvolution = False #Slow-ish!
-    doFace = True #slow-ish!
+    doFace = False #slow-ish!
  
     if doDemo:
         g = demoGrid() #returns g so you can explore the results yourself
